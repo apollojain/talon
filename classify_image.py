@@ -101,7 +101,3 @@ def img_classify(image, model='vgg16'):
 	for (i, (imagenetID, label, prob)) in enumerate(P[0]):
 		array.append([i + 1, format_string(label), round(prob * 100, 2)])
 	return array
-
-if __name__ == '__main__':
-	# print get_directory_files("images")
-	print get_img_info("images")

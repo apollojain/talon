@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/loading.css') }}"/>
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+    </head>
+    <body onload="document.my_form.submit()">
+        <div id="loading"></div>
+        <div id="content">
+            <form name="my_form" action="." method="POST">
+                    <input type="hidden" name="country" value="Norway">
+            </form>
+            </p>
+        </div>    
+    </body>
+</html>

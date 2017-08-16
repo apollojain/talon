@@ -1,0 +1,3 @@
+3. Get filtering down in Angular Search Bar
+4. Figure out Refresh
+5. Figure out Pagination
