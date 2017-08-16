@@ -1,3 +1,6 @@
 3. Get filtering down in Angular Search Bar
+    a. Add angular to file 
+    b. Add ng-model and ng-repeat stuff
+    c. preprocess dictionary and pass in 
+    d. add bindings to search
 4. Figure out Refresh
-5. Figure out Pagination

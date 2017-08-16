@@ -24,8 +24,8 @@ def form_processing():
         db.set("directory", directory)
         db.set("dictionary", str(dictionary))
         db.dump()
-    print dictionary
-    return render_template("index.html", dictionary=dictionary)
+    dictionary_list = helpers.formatted_index_dict_list(dictionary)
+    return render_template("index.html", dictionary_list=dictionary_list)
 
 if __name__ == '__main__':
     """  https://github.com/r0x0r/pywebview/blob/master/examples/http_server.py

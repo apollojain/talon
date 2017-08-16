@@ -3,11 +3,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 	</head>
-	<body>
+	<body ng-app="myApp">
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -16,16 +16,17 @@
 		    
 		  </div>
 		</nav>
-		
-		<div class="container">
+		<div ng-init="dictionary_list = {{dictionary_list | safe}}"></div>
+		{% raw %}
+		<div ng-controller="myCtrl" class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+							<input ng-model="searchText" type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
 							
-							<span class="input-group-btn">
+							<!-- <span class="input-group-btn">
 									<button class="btn btn-secondary" type="button">Go!</button>
-							</span>
+							</span> -->
 					</div>
 					<h2>Image Classes</h2>
 					<table class="table table-hover">
@@ -37,21 +38,30 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for key, value in dictionary['Files'].items() %}
-							<tr onclick="get_image('{{key}}')">
-								<td>{{ key }}</td>
-								<td>{{ value[0][1] }}</td>
-								<td>{{ value[1][1] }}</td>
+							<tr ng-repeat="item in dictionary_list | filter:searchText">
+								<td ><a ng-click="get_image(item.key)">{{ item.key }}</a></td>
+								<td>{{ item.label1 }}</td>
+								<td>{{ item.label2 }}</td>
 							</tr>
-							{% endfor %}
 						</tbody>
-						<form name="my_form" action="." method="POST">
+						<form id="my_form" action="." method="POST">
 							<input type="hidden" id="directory" name="directory" value="/">
 						</form>
 					</table>
 				</div>
 			</div>
 		</div>
+		<script>
+			angular.module('myApp', [])
+			.controller('myCtrl', ['$scope', function($scope) {
+				$scope.get_image = function(image_directory) {
+					console.log(image_directory);
+					$("#directory").val(image_directory);
+					$("#my_form").submit()
+				};
+			}]);
+			</script>
+		{% endraw %}
 		
 	</body>
 </html>

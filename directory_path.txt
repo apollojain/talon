@@ -1,1 +1,1 @@
-/Users/apollojain/Downloads/hw7_data/low-rank_data
+/Users/apollojain/Dropbox/Projects/img_classify/images
